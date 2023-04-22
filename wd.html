@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <!-- <link rel="stylesheet" href="login.css" /> -->
+    <style>
+      /* Style for form container */
+      .form {
+        width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Style for form fields */
+      form label {
+        display: block;
+        margin-bottom: 10px;
+        color: #333;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      form input[type="text"],
+      form input[type="email"],
+      form input[type="password"],
+      form input[type="date"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        padding-right: 5px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        font-size: 16px;
+      }
+
+      form input[type="checkbox"] {
+        display: inline-block;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+
+      form button[type="submit"] {
+        display: block;
+        margin: 20px auto 0;
+        padding: 10px 20px;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      /* Style for form submission message */
+      .success-message {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #d4edda;
+        border-radius: 5px;
+        color: #155724;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      /* Style the table */
+      table {
+        border-collapse: collapse;
+        width: 70%;
+        margin: 0px 15%;
+      }
+
+      /* Style the table header */
+      thead {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      /* Style the table header cells */
+      th {
+        padding: 12px;
+        text-align: left;
+      }
+
+      /* Style the table rows */
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      /* Style the table data cells */
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 align="center">WELCOME TO MY LOGIN PAGE</h1>
+    <div class="form">
+      <h1 style="padding-left: 35%">LOGIN</h1>
+      <form id="login-form">
+        <label for="name">Name</label><br />
+        <input type="text" id="name" name="name" required /><br />
+
+        <label for="email">Email</label><br />
+        <input type="email" id="email" name="email" required /><br />
+
+        <label for="password">Password</label><br />
+        <input type="password" id="password" name="password" required /><br />
+
+        <label for="dob">Date of Birth</label><br />
+        <input type="date" id="dob" name="dob" required max="" min="" /><br />
+
+        <label for="acceptTerms">Accept Terms &amp; Conditions</label>
+        <input type="checkbox" id="acceptTerms" name="acceptTerms" required />
+
+        <button type="submit">Submit</button>
+      </form>
+      <p id="errorPrompt" style="display: none">
+        Please fill all required fields.
+      </p>
+    </div>
+
+    <table>
+      <thead>
+        <h1
+          align="center"
+          style="
+            background-color: #4caf50;
+            color: white;
+            width: 100;
+            border: 3px solid black;
+          "
+        >
+          Entries
+        </h1>
+      </thead>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Date of Birth</th>
+          <th>Password</th>
+          <th>Accepted</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+
+    <script>
+      const form = document.querySelector("#login-form");
+      const tableBody = document.querySelector("#table-body");
+      const errorPrompt = document.querySelector("#errorPrompt");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // Check if all required fields are filled
+        if (form.checkValidity()) {
+          // Create a new row in the table
+          const newRow = tableBody.insertRow();
+
+          // Add the form data to the row
+          const name = form.elements["name"].value;
+          const email = form.elements["email"].value;
+          const dob = form.elements["dob"].value;
+          const password = form.elements["password"].value;
+
+          const nameCell = newRow.insertCell();
+          const emailCell = newRow.insertCell();
+          const dobCell = newRow.insertCell();
+          const passCell = newRow.insertCell();
+          const accCell = newRow.insertCell();
+          nameCell.textContent = name;
+          emailCell.textContent = email;
+          dobCell.textContent = dob;
+          passCell.textContent = password;
+          accCell.textContent = "true";
+          // Clear the form
+          form.reset();
+        } else {
+          // Show error prompt
+          errorPrompt.style.display = "block";
+        }
+      });
+
+      const dobInput = document.getElementById("dob");
+      const today = new Date();
+      const maxDate = new Date(
+        today.getFullYear() - 18,
+        today.getMonth(),
+        today.getDate()
+      )
+        .toISOString()
+        .split("T")[0];
+      const minDate = new Date(
+        today.getFullYear() - 55,
+        today.getMonth(),
+        today.getDate()
+      )
+        .toISOString()
+        .split("T")[0];
+      dobInput.setAttribute("max", maxDate);
+      dobInput.setAttribute("min", minDate);
+    </script>
+  </body>
+</html>

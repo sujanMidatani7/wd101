@@ -4,10 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
-    <!-- <link rel="stylesheet" href="login.css" /> -->
+
     <style>
-      /* Style for form container */
+      body {
+        background-color: black;
+        color: white;
+      }
       .form {
+        color: black;
         width: 500px;
         margin: 50px auto;
         padding: 20px;
@@ -16,7 +20,6 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       }
 
-      /* Style for form fields */
       form label {
         display: block;
         margin-bottom: 10px;
@@ -59,7 +62,6 @@
         cursor: pointer;
       }
 
-      /* Style for form submission message */
       .success-message {
         margin-top: 20px;
         padding: 10px;
@@ -69,31 +71,28 @@
         font-size: 16px;
         font-weight: bold;
       }
-      /* Style the table */
+
       table {
         border-collapse: collapse;
         width: 70%;
         margin: 0px 15%;
+        color: black;
       }
 
-      /* Style the table header */
       thead {
         background-color: #4caf50;
         color: white;
       }
 
-      /* Style the table header cells */
       th {
         padding: 12px;
         text-align: left;
       }
 
-      /* Style the table rows */
       tr:nth-child(even) {
         background-color: #f2f2f2;
       }
 
-      /* Style the table data cells */
       td {
         border: 1px solid #ddd;
         padding: 8px;
@@ -101,9 +100,9 @@
     </style>
   </head>
   <body>
-    <h1 align="center">WELCOME TO MY LOGIN PAGE</h1>
+    <h1 align="center">WELCOME TO MY REGISTRATION PAGE</h1>
     <div class="form">
-      <h1 style="padding-left: 30">Registration Page</h1>
+      <h1 align="center">Registration Page</h1>
       <form id="login-form">
         <label for="name">Name</label><br />
         <input type="text" id="name" name="name" required /><br />
@@ -153,8 +152,6 @@
       <tbody id="table-body"></tbody>
     </table>
 
-    <script src="index.js">
-     
-    </script>
+    <script src="index.js"></script>
   </body>
 </html>
